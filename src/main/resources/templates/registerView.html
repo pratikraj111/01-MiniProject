@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+  </head>
+  <body>
+    <h1>Register Page </h1>
+    <p th:text="${msg}"></p>
+    <table>
+		<form th:action="@{/register}" th:object="${Counsellor}" method="post">
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" th:field="*{name}" required /></td>
+			</tr>
+			<tr>
+				<td>email:</td>
+				<td><input type="email" th:field="*{email}" required /></td>
+			</tr>
+			<tr>
+				<td>password:</td>
+				<td><input type="password" th:field="*{pwd}" required /></td>
+			</tr>
+			<tr>
+				<td>Phone no:</td>
+				<td><input type="text" th:field="*{phno}" required /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit"  value="Register" class="btn btn-primary"></td>
+			</tr>
+			
+		</form>
+	</table>
+    <a href="/">Login Here.</a>
+  </body>
+</html>
