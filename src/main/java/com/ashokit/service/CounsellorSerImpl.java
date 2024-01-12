@@ -28,8 +28,10 @@ public class CounsellorSerImpl implements CounsellorService {
 
 	@Override
 	public Counsellor loginCheck(String email, String pwd) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Counsellor c= counsellorRepo.findByMailAndPwd(email, pwd);
+		
+		return c;
 	}
 
 	@Override

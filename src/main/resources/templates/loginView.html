@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -8,6 +9,23 @@
   <body>
 	  <div class="container">
    		 <h1>Login Page </h1>
+   		 <font color='red'><p th:text="${ErrMsg}"></p></font>
+   		 <form th:action="@{/login}" th:object="${Counsellor}" method="post">
+				<table>
+					<tr>
+				<td>email:</td>
+				<td><input type="Username" th:field="*{email}" required /></td>
+			</tr>
+			<tr>
+				<td>password:</td>
+				<td><input type="password" th:field="*{pwd}" required /></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="submit"  value="Login" class="btn btn-primary"></td>
+			</tr>
+				</table>
    		 
     	<a href="/register">Register Here.</a>
     	<a href="/forgot-pwd">Forgot password</a>

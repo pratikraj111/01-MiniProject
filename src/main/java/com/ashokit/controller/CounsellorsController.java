@@ -22,28 +22,7 @@ public class CounsellorsController {
 		model.addAttribute("Counsellor", new Counsellor());
 		return "loginView";
 	}
-
-	@GetMapping("/register")
-	public String regPage(Model model)
-	{
-		model.addAttribute("Counsellor", new Counsellor());
-		return "registerView";
-	}
-
-	@GetMapping("/forgot-pwd")
-	public String recoverPwdPage(Model model)
-	{
-		return "forgotPwdView";
-	}
-
-	@PostMapping("/register")
-	public String handleRegistration(Counsellor c, Model model)
-	{
-		String msg=counsellorSer.saveCounsellor(c);
-		model.addAttribute("msg", msg);
-		return "registerView";
-	}
-
+	
 	@PostMapping("/login")
 	public String handleLogin(Counsellor c, Model model)
 	{
@@ -55,6 +34,28 @@ public class CounsellorsController {
 			return "loginView";
 		}
 		return "redirect: dashboard";
+	}
+
+	@GetMapping("/register")
+	public String regPage(Model model)
+	{
+		model.addAttribute("Counsellor", new Counsellor());
+		return "registerView";
+	}
+
+	@PostMapping("/register")
+	public String handleRegistration(Counsellor c, Model model)
+	{
+		String msg=counsellorSer.saveCounsellor(c);
+		model.addAttribute("msg", msg);
+		model.addAttribute("Counsellor", new Counsellor());
+		return "registerView";
+	}
+	
+	@GetMapping("/forgot-pwd")
+	public String recoverPwdPage(Model model)
+	{
+		return "forgotPwdView";
 	}
 
 	@GetMapping("/dashboard")
@@ -77,6 +78,4 @@ public class CounsellorsController {
 		}
 		return "forgotPwdView";
 	}
-
-
 }
