@@ -6,7 +6,7 @@ import com.ashokit.entity.Counsellor;
 
 public interface CounsellorRepo extends JpaRepository<Counsellor, Integer>{
 	
-	public Counsellor findByMailAndPwd(String email, String pwd);
+	public Counsellor findByEmailAndPwd(String email, String pwd);
 	
 
 }

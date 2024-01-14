@@ -8,7 +8,7 @@ import com.ashokit.entity.Counsellor;
 import com.ashokit.repo.CounsellorRepo;
 
 @Service
-public class CounsellorSerImpl implements CounsellorService {
+public class CounsellorServiceImpl implements CounsellorService {
 	
 	@Autowired
 	private CounsellorRepo counsellorRepo;
@@ -29,7 +29,7 @@ public class CounsellorSerImpl implements CounsellorService {
 	@Override
 	public Counsellor loginCheck(String email, String pwd) {
 		
-		Counsellor c= counsellorRepo.findByMailAndPwd(email, pwd);
+		Counsellor c= counsellorRepo.findByEmailAndPwd(email, pwd);
 		
 		return c;
 	}

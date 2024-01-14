@@ -8,7 +8,7 @@ import com.ashokit.bindings.SearchCriteria;
 import com.ashokit.entity.StudentEnq;
 
 @Service
-public class EnquirySerImpl implements EnquiryService {
+public class EnquiryServiceImpl implements EnquiryService {
 
 	@Override
 	public boolean addEnq(StudentEnq se) {
