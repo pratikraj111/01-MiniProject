@@ -1,8 +1,11 @@
 package com.ashokit.controller;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +43,8 @@ public class EnquiryController {
 		Integer cid=(Integer)obj;
 		
 		enq.setCid(cid);
+	
+		enq.setCreatedDate(java.time.LocalDate.now());
 		
 		if(stts)
 		{
@@ -50,6 +55,11 @@ public class EnquiryController {
 			model.addAttribute("errMsg", "Invalid input..!");
 		}
 		return "addEnqView";
+	}
+
+	private Date Date(LocalDate now) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@GetMapping("/Enquiries")

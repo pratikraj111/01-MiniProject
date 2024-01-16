@@ -30,7 +30,7 @@ public class CounsellorsController {
 	}
 	
 	@PostMapping("/login")
-	public String handleLogin(Counsellor c,HttpServletRequest request, Model model)
+	public String handleLogin(Counsellor c,HttpServletRequest req, Model model)
 	{
 		Counsellor c1=counsellorSer.loginCheck(c.getEmail(), c.getPwd());
 		
@@ -40,7 +40,7 @@ public class CounsellorsController {
 			return "loginView";
 		}
 		
-		HttpSession session=request.getSession(true);
+		HttpSession session=req.getSession(true);
 		session.setAttribute("CID", c1.getCid());
 		
 		return "redirect:dashboard";
@@ -72,10 +72,9 @@ public class CounsellorsController {
 	public String buildDashboard(HttpServletRequest req,Model model)
 	{
 		HttpSession session=req.getSession(false);
-		Object obj=session.getAttribute("CID");
-		Integer cid=(Integer)obj;
+		Integer cid=(Integer)session.getAttribute("CID");
 		
-		DashboardResponse dashboardInfo=counsellorSer.getDashboardInfo(null);
+		DashboardResponse dashboardInfo=counsellorSer.getDashboardInfo(cid);
 		model.addAttribute("dboard", dashboardInfo);
 		
 		return "dashboard";

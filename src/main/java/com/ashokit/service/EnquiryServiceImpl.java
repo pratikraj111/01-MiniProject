@@ -19,11 +19,7 @@ public class EnquiryServiceImpl implements EnquiryService {
 	public boolean addEnq(StudentEnq se) {
 		
 		StudentEnq s1=srepo.save(se);
-		if(s1.getCid()!=null)
-		{
-			return true;
-		}
-		return false;
+		return s1.getEnqId()!=null;
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class StudentEnq {
 	private String mode;
 	private String course;
 	private String status;
-	private Date createdDate;
+	private LocalDate createdDate;
 	private Integer cid;
 	
 	
@@ -62,10 +62,10 @@ public class StudentEnq {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Date getCreatedDate() {
+	public LocalDate getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
 	public Integer getCid() {
