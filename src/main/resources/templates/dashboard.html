@@ -6,7 +6,26 @@
     <title></title>
   </head>
   <body>
-    <h1>DashBoard Page..!</h1>
-    <a href="/" class="btn btn-danger">Logout</a>
+    <h1>Welcome to your dashboard</h1>
+    <table>
+		<tr>
+			<td>Total Enquiries:</td>
+			<td th:text="${dboard.totalEnq}"></td>
+		</tr>
+		<tr>
+			<td>Enrolled Enquiries:</td>
+			<td th:text="${dboard.enrollerEnq}"></td>
+		</tr>
+		<tr>
+			<td>Total Enquiries:</td>
+			<td th:text="${dboard.lostEnq}"></td>
+		</tr>
+	</table>
+	<a href="/enquiry">Add Enquries</a>
+	<a href="/Enquiries">View Enquries</a>
+	<br><br>
+    <a href="/" class="btn btn-danger">
+		<button>Logout</button>
+		</a>
   </body>
 </html>

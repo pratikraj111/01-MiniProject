@@ -7,14 +7,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ashokit.bindings.DashboardResponse;
 import com.ashokit.entity.Counsellor;
 import com.ashokit.service.CounsellorService;
+import com.ashokit.util.EmailUtils;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class CounsellorsController {
 	
 	@Autowired
 	private CounsellorService counsellorSer;
+
 	
 	@GetMapping("/")
 	public String index(Model model)
@@ -24,7 +30,7 @@ public class CounsellorsController {
 	}
 	
 	@PostMapping("/login")
-	public String handleLogin(Counsellor c, Model model)
+	public String handleLogin(Counsellor c,HttpServletRequest request, Model model)
 	{
 		Counsellor c1=counsellorSer.loginCheck(c.getEmail(), c.getPwd());
 		
@@ -33,7 +39,11 @@ public class CounsellorsController {
 			model.addAttribute("ErrMsg", "Invalid Credentials");
 			return "loginView";
 		}
-		return "redirect: dashboard";
+		
+		HttpSession session=request.getSession(true);
+		session.setAttribute("CID", c1.getCid());
+		
+		return "redirect:dashboard";
 	}
 
 	@GetMapping("/register")
@@ -59,8 +69,15 @@ public class CounsellorsController {
 	}
 
 	@GetMapping("/dashboard")
-	public String buildDashboard(Model model)
+	public String buildDashboard(HttpServletRequest req,Model model)
 	{
+		HttpSession session=req.getSession(false);
+		Object obj=session.getAttribute("CID");
+		Integer cid=(Integer)obj;
+		
+		DashboardResponse dashboardInfo=counsellorSer.getDashboardInfo(null);
+		model.addAttribute("dboard", dashboardInfo);
+		
 		return "dashboard";
 	}
 	

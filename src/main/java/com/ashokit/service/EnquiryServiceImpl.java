@@ -2,17 +2,27 @@ package com.ashokit.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ashokit.bindings.SearchCriteria;
 import com.ashokit.entity.StudentEnq;
+import com.ashokit.repo.StudentEnqRepo;
 
 @Service
 public class EnquiryServiceImpl implements EnquiryService {
+	
+	@Autowired
+	private StudentEnqRepo srepo;
 
 	@Override
 	public boolean addEnq(StudentEnq se) {
-		// TODO Auto-generated method stub
+		
+		StudentEnq s1=srepo.save(se);
+		if(s1.getCid()!=null)
+		{
+			return true;
+		}
 		return false;
 	}
 

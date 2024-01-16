@@ -12,11 +12,16 @@ import com.ashokit.bindings.SearchCriteria;
 import com.ashokit.entity.StudentEnq;
 import com.ashokit.service.EnquiryService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class EnquiryController {
 	
 	@Autowired
 	private EnquiryService enqService;
+	
+
 	
 	@GetMapping("/enquiry")
 	public String enqPage(Model model)
@@ -26,9 +31,16 @@ public class EnquiryController {
 	}
 	
 	@PostMapping("/enquiry")
-	public String addEnquiry(StudentEnq se, Model model)
+	public String addEnquiry(StudentEnq enq,HttpServletRequest req, Model model)
 	{
-		Boolean stts=enqService.addEnq(se);
+		Boolean stts=enqService.addEnq(enq);
+		model.addAttribute("enq", new StudentEnq());
+		HttpSession session= req.getSession(false);
+		Object obj=session.getAttribute("CID");
+		Integer cid=(Integer)obj;
+		
+		enq.setCid(cid);
+		
 		if(stts)
 		{
 			model.addAttribute("msg", "Enquiry added successfully..!");
