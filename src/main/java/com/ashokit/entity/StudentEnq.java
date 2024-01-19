@@ -3,6 +3,8 @@ package com.ashokit.entity;
 import java.time.LocalDate;
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +24,10 @@ public class StudentEnq {
 	private String mode;
 	private String course;
 	private String status;
-	private LocalDate createdDate;
 	private Integer cid;
+	@CreationTimestamp
+	private LocalDate createdDate;
+	
 	
 	
 	public Integer getEnqId() {

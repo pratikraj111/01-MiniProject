@@ -6,13 +6,17 @@
     <title></title>
   </head>
   <body>
+	  <center>
+		  <h1><font color="Orange">Enquries Management System</font></h1>
+		  
+	  
 	  <table>
 		  <tr>
 			  <td><a href="/dashboard">Dashboard</a></td>
 			  <a href="/Enquiries">View Enquries</a>
 		  </tr>
 	  </table>
-    <h2>Add Enquries  </h2>
+    <h2><font color="red">Add Enquries  </font></h2>
     <font color='red'><p th:text="${ErrMsg}"></p></font>
     <font color='green'><p th:text="${msg}"></p></font>
     <form th:action="@{/enquiry}" th:object="${enq}" method="post">
@@ -62,5 +66,6 @@
 			
 		</table>
 	</form>
+	</center>
   </body>
 </html>

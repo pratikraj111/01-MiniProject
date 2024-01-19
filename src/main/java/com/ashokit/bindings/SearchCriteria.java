@@ -2,20 +2,20 @@ package com.ashokit.bindings;
 
 public class SearchCriteria {
 	
-	private String courseName;
-	private String enqStatus;
+	private String course;
+	private String status;
 	private String mode;
-	public String getCourseName() {
-		return courseName;
+	public String getCourse() {
+		return course;
 	}
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setCourse(String course) {
+		this.course = course;
 	}
-	public String getEnqStatus() {
-		return enqStatus;
+	public String getStatus() {
+		return status;
 	}
-	public void setEnqStatus(String enqStatus) {
-		this.enqStatus = enqStatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public String getMode() {
 		return mode;

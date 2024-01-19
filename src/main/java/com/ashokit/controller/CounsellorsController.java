@@ -96,4 +96,12 @@ public class CounsellorsController {
 		}
 		return "forgotPwdView";
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest req,Model model)
+	{
+		HttpSession session=req.getSession(false);
+		session.invalidate();
+		return "redirect:/";
+	}
 }

@@ -7,17 +7,19 @@
     <title>Bootstrap demo</title>
   </head>
   <body>
+	  <center>
+	  <h1><font color="Orange">Enquries Management System</font></h1>
 	  <div class="container">
-   		 <h1>Login Page </h1>
+   		 <h2>Login </h2>
    		 <font color='red'><p th:text="${ErrMsg}"></p></font>
    		 <form th:action="@{/login}" th:object="${Counsellor}" method="post">
 				<table>
 					<tr>
-				<td>email:</td>
+				<td>Email:</td>
 				<td><input type="email" th:field="*{email}" required /></td>
 			</tr>
 			<tr>
-				<td>password:</td>
+				<td>Password:</td>
 				<td><input type="password" th:field="*{pwd}" required /></td>
 			</tr>
 
@@ -30,5 +32,6 @@
     	<a href="/register">Register Here.</a>
     	<a href="/forgot-pwd">Forgot password</a>
     </div>
+	  </center>
   </body>
 </html>

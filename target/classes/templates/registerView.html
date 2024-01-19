@@ -9,7 +9,9 @@
     <title>Bootstrap demo</title>
   </head>
   <body>
-    <h1>Register Page </h1>
+	  <center>
+	  <h1><font color="Orange">Enquries Management System</font></h1>
+    <h2>Register</h2>
     <font color="green"><p th:text="${msg}"></p></font>
     <table>
 		<form th:action="@{/register}" th:object="${Counsellor}" method="post">
@@ -33,9 +35,18 @@
 				<td></td>
 				<td><input type="submit"  value="Register" class="btn btn-primary"></td>
 			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<a href="/">
+					 Login  </a>
+				</td>
+			</tr>
 			
 		</form>
 	</table>
-    <a href="/">Login Here.</a>
+    
+    </center>
   </body>
 </html>

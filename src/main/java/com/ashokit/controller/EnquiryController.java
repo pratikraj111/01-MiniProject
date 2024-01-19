@@ -1,14 +1,12 @@
 package com.ashokit.controller;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ashokit.bindings.SearchCriteria;
@@ -34,7 +32,7 @@ public class EnquiryController {
 	}
 	
 	@PostMapping("/enquiry")
-	public String addEnquiry(StudentEnq enq,HttpServletRequest req, Model model)
+	public String addEnquiry(@ModelAttribute("enq") StudentEnq enq,HttpServletRequest req, Model model)
 	{
 		HttpSession session= req.getSession(false);
 		Object obj=session.getAttribute("CID");
@@ -59,17 +57,37 @@ public class EnquiryController {
 	
 
 	@GetMapping("/Enquiries")
-	public String viewEnquiries(Model model)
+	public String viewEnquiries(HttpServletRequest req,Model model)
 	{
-		List<StudentEnq> enquiriesList=enqService.getEnquiries(null, null);
+		HttpSession session= req.getSession(false);
+		Object obj=session.getAttribute("CID");
+		Integer cid=(Integer)obj;
+		
+		if(cid==null)
+		{
+			return "redirect:/logout";
+		}
+		
+		model.addAttribute("sc", new SearchCriteria());
+		
+		List<StudentEnq> enquiriesList=enqService.getEnquiries(cid, new SearchCriteria());
 		model.addAttribute("enquiries", enquiriesList);
 		return "displayEnqView";
 	}
 
-	@GetMapping("/Filter-Enquiries")
-	public String filterEnquiries(SearchCriteria sc, Model model)
+	@PostMapping("/Filter-Enquiries")
+	public String filterEnquiries(@ModelAttribute("sc") SearchCriteria sc,HttpServletRequest req, Model model)
 	{
-		List<StudentEnq> enquiriesList=enqService.getEnquiries(null, null);
+		HttpSession session= req.getSession(false);
+		Object obj=session.getAttribute("CID");
+		Integer cid=(Integer)obj;
+		
+		if(cid==null)
+		{
+			return "redirect:/logout";
+		}
+			
+		List<StudentEnq> enquiriesList=enqService.getEnquiries(cid, sc);
 		model.addAttribute("enquiries", enquiriesList);
 		return "displayEnqView";
 	}
