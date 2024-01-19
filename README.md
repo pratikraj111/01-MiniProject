@@ -1,5 +1,5 @@
 # 01-MiniProject
-# Enquiry-management-system
+# Enquiry-management-system using SpringBoot MVC
 Functionalities:
 *Login
 *Registration
