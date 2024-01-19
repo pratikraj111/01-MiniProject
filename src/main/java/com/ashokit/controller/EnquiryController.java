@@ -36,13 +36,12 @@ public class EnquiryController {
 	@PostMapping("/enquiry")
 	public String addEnquiry(StudentEnq enq,HttpServletRequest req, Model model)
 	{
-		Boolean stts=enqService.addEnq(enq);
-		model.addAttribute("enq", new StudentEnq());
 		HttpSession session= req.getSession(false);
 		Object obj=session.getAttribute("CID");
 		Integer cid=(Integer)obj;
-		
 		enq.setCid(cid);
+		Boolean stts=enqService.addEnq(enq);
+		model.addAttribute("enq", new StudentEnq());
 	
 		enq.setCreatedDate(java.time.LocalDate.now());
 		
@@ -57,10 +56,7 @@ public class EnquiryController {
 		return "addEnqView";
 	}
 
-	private Date Date(LocalDate now) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@GetMapping("/Enquiries")
 	public String viewEnquiries(Model model)

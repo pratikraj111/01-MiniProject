@@ -32,6 +32,8 @@ public class CounsellorsController {
 	@PostMapping("/login")
 	public String handleLogin(Counsellor c,HttpServletRequest req, Model model)
 	{
+		model.addAttribute("Counsellor", new Counsellor());
+		
 		Counsellor c1=counsellorSer.loginCheck(c.getEmail(), c.getPwd());
 		
 		if(c1== null)
